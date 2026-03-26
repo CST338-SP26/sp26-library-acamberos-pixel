@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import Utilities.Code;
+
 public class Reader
 {
     public static final int CARD_NUMBER_ =0;
@@ -47,12 +49,27 @@ public class Reader
 
 
 
-    public void addBook(Book book) {
-        books.add(book);
-    }
-    public void removeBook(Book book)
+    public Code addBook(Book book)
     {
+        if (books.contains(book))
+        {
+            return Code.BOOK_ALREADY_CHECKED_OUT_ERROR;
+        }
+
+        books.add(book);
+        book_count_ = books.size();
+        return Code.SUCCESS;
+    }
+    public Code removeBook(Book book)
+    {
+        if (!books.contains(book))
+        {
+            return Code.READER_DOESNT_HAVE_BOOK_ERROR;
+        }
+
         books.remove(book);
+        book_count_ = books.size();
+        return Code.SUCCESS;
     }
 
 
@@ -108,7 +125,7 @@ public class Reader
     public String toString() {
         return
                 name_  +
-                '(' + card_number_ + ')' +
+                " (#" + card_number_ + ')' +
                 " has checked out " + '{'  + books +
                 '}';
     }
@@ -128,8 +145,18 @@ public class Reader
         return Objects.hash(getBook_count_(), getBooks(), getName_(), getPhone_(), getCard_number_());
     }
 
-
-
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reader reader = (Reader) o;
+        return card_number_ == reader.card_number_
+                && book_start_ == reader.book_start_
+                && book_count_ == reader.book_count_
+                && Objects.equals(phone_, reader.phone_)
+                && Objects.equals(name_, reader.name_);
+    }
 
 
 }
