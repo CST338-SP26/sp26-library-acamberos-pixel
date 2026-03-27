@@ -1,8 +1,9 @@
-// athian camberos
+
 // reader java file for project one, part two
 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,10 +12,10 @@ import Utilities.Code;
 public class Reader
 {
     public static final int CARD_NUMBER_ =0;
-    public static final String PHONE_ ="";
-    public static final String NAME_ = "";
-    public static final int BOOK_START_ =0;
-    public static final int BOOK_COUNT_ =0;
+    public static final int PHONE_ =1;
+    public static final int NAME_ = 2;
+    public static final int BOOK_START_ =3;
+    public static final int BOOK_COUNT_ =4;
 
 
     private int card_number_;
@@ -38,13 +39,15 @@ public class Reader
 //        this.author = author;
 //        this.dueDate = dueDate;
 //    }
-    public Reader(int card_number_ , String phone_ , String name_ , int book_start_, int book_count_)
+    public Reader(int card_number_, String name_, String phone_)
     {
         this.card_number_ = card_number_;
-        this.phone_ = phone_;
         this.name_ = name_;
+        this.phone_ = phone_;
+
         this.book_start_ = book_start_;
         this.book_count_ = book_count_;
+        this.books =new ArrayList<>();
     }
 
 
@@ -84,19 +87,19 @@ public class Reader
         return books;
     }
 
-    public int getBook_count_() {
+    public int getBookCount() {
         return book_count_;
     }
 
-    public int getCard_number_() {
+    public int getCardNumber() {
         return card_number_;
     }
 
-    public String getPhone_() {
+    public String getPhone() {
         return phone_;
     }
 
-    public String getName_() {
+    public String getName() {
         return name_;
     }
 
@@ -105,15 +108,15 @@ public class Reader
         this.books = books;
     }
 
-    public void setCard_number_(int card_number_) {
+    public void setCardNumber(int card_number_) {
         this.card_number_ = card_number_;
     }
 
-    public void setName_(String name_) {
+    public void setName(String name_) {
         this.name_ = name_;
     }
 
-    public void setPhone_(String phone_) {
+    public void setPhone(String phone_) {
         this.phone_ = phone_;
     }
 
@@ -142,7 +145,7 @@ public class Reader
   @Override
     public int hashCode()
     {
-        return Objects.hash(getBook_count_(), getBooks(), getName_(), getPhone_(), getCard_number_());
+        return Objects.hash(getBookCount(), getBooks(), getName(), getPhone(), getCardNumber());
     }
 
     @Override
