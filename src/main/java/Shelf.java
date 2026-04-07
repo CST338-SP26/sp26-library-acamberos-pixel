@@ -1,8 +1,8 @@
 import Utilities.Code;
-
-import java.util.ArrayList;
 import java.util.*;
 
+// athian camberos
+// sunday april 5th
 
 
 
@@ -139,5 +139,27 @@ public static final int SUBJECT_ = 1;
         return Code.SUCCESS;
     }
 
-    
+
+    public String listBooks()
+    {
+        int totalBooks = books.values().stream().mapToInt(Integer::intValue).sum();
+
+        StringBuilder sb = new StringBuilder();
+
+        // Header line — singular "book" vs plural "books"
+        if (totalBooks == 1) {
+            sb.append("1 book on shelf: ");
+        } else {
+            sb.append(totalBooks).append(" books on shelf: ");
+        }
+        sb.append(this).append("\n");
+
+        // One line per book: <book.toString()> <count>
+        for (HashMap.Entry<Book, Integer> entry : books.entrySet()) {
+            sb.append(entry.getKey()).append(" ").append(entry.getValue()).append("\n");
+        }
+
+        return sb.toString();
+    }
+
 }
