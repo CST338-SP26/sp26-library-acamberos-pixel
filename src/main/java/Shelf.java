@@ -26,7 +26,9 @@ public static final int SUBJECT_ = 1;
     // Constructors needed to handle information
 
     @Deprecated
-    public Shelf() {}
+    public Shelf() {
+        this.books = new HashMap<>();
+    }
 
 
     public Shelf(int shelfNumber, String subject) {
