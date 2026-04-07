@@ -6,8 +6,6 @@ import java.util.*;
 
 
 
-
-
 public class Shelf {
     
 
@@ -120,7 +118,7 @@ public static final int SUBJECT_ = 1;
     }
 
     public Code removeBook(Book book) {
-        // Book not in the HashMap at all
+
         if (!books.containsKey(book)) {
             System.out.println(book.getTitle() + " is not on shelf " + subject);
             return Code.BOOK_NOT_IN_INVENTORY_ERROR;
